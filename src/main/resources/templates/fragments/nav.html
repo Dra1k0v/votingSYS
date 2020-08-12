@@ -1,0 +1,47 @@
+<th:block xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <a class="nav-link text-white active h5" href="/">Voting System 2020</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav_anonymous"
+         sec:authorize="isAnonymous()">
+        <ul class="navbar-nav row">
+            <li class="nav-item col-md-4">
+<!--                <a class="nav-link text-white active h6" href="/login">Login</a>-->
+                <form th:action="@{/login}" method="get">
+                    <button type="submit" class="btn btn-success">Login</button>
+                </form>
+            </li>
+            <li class="nav-item col-md-4">
+<!--                <a class="nav-link text-white active h6" href="/register">Register</a>-->
+                <form th:action="@{/register}" method="get">
+                    <button type="submit" class="btn btn-success">Register</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+    <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav_authenticated"
+         sec:authorize="isAuthenticated()">
+        <ul class="navbar-nav row">
+            <li class="nav-item col-md-6" sec:authorize="hasRole('ADMIN')">
+                <form th:action="@{/add-party}" method="get">
+                    <button type="submit" class="btn btn-success">Add new Party</button>
+                </form>
+            </li>
+            <li class="nav-item col-md-4" sec:authorize="hasRole('USER')">
+                <form th:action="@{/vote}" method="get">
+                    <button type="submit" class="btn btn-success">Vote</button>
+                </form>
+            </li>
+            <li class="nav-item col-md-4">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-success">Logout</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+</th:block>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+        <th:block th:include="~{/fragments/head.html}"></th:block>
+    </head>
+
+<body>
+<header>
+    <nav class="navbar bg-success navbar-expand-lg navbar-background bg-success">
+        <th:block th:include="~{/fragments/nav.html}"></th:block>
+    </nav>
+</header>
+<main>
+    <h1 class="text-center mt-2"><span class="badge badge-pill badge-success">Register</span></h1>
+    <hr class="hr-3"/>
+    <form class="mx-auto mb-5 text-center w-25 bg-success p-3 rounded" th:action="@{/register}" th:object="${registration}" method="post">
+        <div class="form-group">
+            <div class="label-holder textCol d-flex justify-content-center">
+                <label for="username" class="h4 mb-2 text-white">Email</label>
+            </div>
+            <input type="text" class="form-control" id="username" name="username" th:field="*{email}"/>
+<!--            <small th:each="e : ${#fields.errors('email')}" th:text="${e}"   class="text-warning">Incorrect email!</small>-->
+            <small class="text-warning" th:if="${#fields.hasErrors('email')}">Incorrect email!</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="password" class="h4 mb-2">Password</label>
+            </div>
+            <input type="password" class="form-control" id="password" name="password" th:field="*{password}"/>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+            </div>
+            <input type="password"  class="form-control" id="confirmPassword" name="confirmPassword" th:field="*{confirmPassword}"/>
+            <small class="text-warning" th:if="${#fields.hasErrors('confirmPassword')}">Passwords do not match!</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="firstName" class="h4 mb-2">First name</label>
+            </div>
+            <input type="text" class="form-control" id="firstName" name="firstName" th:field="*{firstName}"/>
+            <small class="text-warning" th:if="${#fields.hasErrors('firstName')}">Required!</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="lastName" class="h4 mb-2">Last name</label>
+            </div>
+            <input type="text" class="form-control" id="lastName" name="lastName" th:field="*{lastName}"/>
+            <small class="text-warning" th:if="${#fields.hasErrors('lastName')}">Required!</small>
+
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="personalIdNum" class="h4 mb-2">Personal Id Number</label>
+            </div>
+            <input type="text" class="form-control" id="personalIdNum" name="personalIdNum" th:field="*{personalIdNumber}"/>
+            <small class="text-warning" th:if="${#fields.hasErrors('personalIdNumber')}">Required!</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="town" class="h4 mb-2">Town</label>
+            </div>
+            <input type="text" class="form-control" id="town" name="town" th:field="*{town}"/>
+            <small class="text-warning" th:if="${#fields.hasErrors('town')}">Required!</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-light text-secondary mb-3" value="Register"\>Register</button>
+        </div>
+    </form>
+</main>
+<footer class="footer bg-success py-2">
+    <th:block th:include="~{/fragments/footer.html}"></th:block>
+	</footer>
+</body>
+</html>

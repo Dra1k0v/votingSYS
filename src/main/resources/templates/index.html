@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <th:block th:include="~{/fragments/head.html}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar bg-success navbar-expand-lg navbar-background bg-success">
+        <th:block th:include="~{/fragments/nav.html}"></th:block>
+    </nav>
+</header>
+<main>
+    <div class="container bg-gray p-3 rounded  text-center mt-5" sec:authorize="isAnonymous()">
+        <h1>Welcome to Voting system v2</h1>
+        <hr class="my-3"/>
+        <p class="h4">on our website you can leave your vote.</p>
+        <hr class="my-3"/>
+        <h3>
+            <a class="text-primary" href="/login">Login</a>
+            if you are registered user or click
+            <a class="text-primary" href="/register">Register</a>
+            and leave your vote.
+        </h3>
+    </div>
+
+    <div lass="container bg-gray p-3 rounded  text-center mt-5" sec:authorize="isAuthenticated()">
+        <p>Logged in user: <span sec:authentication="name"></span></p>
+        <p>Roles: <span sec:authentication="principal.authorities"></span></p>
+
+        <th:block th:include="~{/fragments/vote-statistics-table.html}"></th:block>
+
+    </div>
+</main>
+<footer class="footer bg-success py-2">
+    <th:block th:include="~{/fragments/footer.html}"></th:block>
+</footer>
+</body>
+</html>

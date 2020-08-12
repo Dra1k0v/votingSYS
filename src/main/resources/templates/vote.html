@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head.html}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar bg-success navbar-expand-lg navbar-background bg-success">
+        <th:block th:include="~{/fragments/nav.html}"></th:block>
+    </nav>
+</header>
+<main>
+
+    <th:block th:unless="${voteError}">
+        <div class="container bg-gray p-3 rounded  text-center mt-5 justify-content-center">
+            <ul class="list-group w-50 mx-auto">
+                <th:block th:each="party : ${partyList}">
+                    <li class="list-group-item">
+                        <div class="d-inline p-2 offset-2">
+                            <form class="form-inline" th:action="@{/vote}" method="post">
+                                <span th:text="${party.name}"></span>
+                                <button type="submit" class="btn btn-success offset-8" th:name="vote" th:value="${party.id}">
+                                    Vote
+                                </button>
+                            </form>
+                        </div>
+                    </li>
+                </th:block>
+            </ul>
+        </div>
+    </th:block>
+
+    <th:block th:if="${voteError}">
+        <h1>You have already voted</h1>
+    </th:block>
+
+</main>
+<footer class="footer bg-success py-2">
+    <th:block th:include="~{/fragments/footer.html}"></th:block>
+</footer>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head.html}"></th:block>
+</head>
+<body>
+   <header>
+       <nav class="navbar bg-success navbar-expand-lg navbar-background bg-success">
+       <th:block th:include="~{/fragments/nav.html}"></th:block>
+       </nav>
+   </header>
+    <main >
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-success" >Login</span></h1>
+        <hr class="hr-3"/>
+        <form class="mx-auto w-25 bg-success bg-gray p-3 rounded" th:action="@{/login}" method="post">
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="username" class="h3 mb-2">Email</label>
+                </div>
+                <input type="text" class="form-control" id="username" name="username"/>
+            </div>
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="password" class="h3 mb-2">Password</label>
+                </div>
+                <input type="password" class="form-control"
+                       id="password" name="password" />
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-light text-secondary mb-3">Login</button>
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <p class="text-center">To login as admin use these credentials - admin@admin.bg / topsecret.</p>
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <p class="text-center">To login as user use these credentials - user@user.bg / topsecret.</p>
+            </div>
+        </form>
+    </main>
+	<footer class="footer bg-success  py-2">
+        <th:block th:include="~{/fragments/footer.html}"></th:block>
+	</footer>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="~{/fragments/head.html}"></th:block>
+</head>
+<body>
+<header>
+    <nav class="navbar bg-success navbar-expand-lg navbar-background bg-success">
+        <th:block th:include="~{/fragments/nav.html}"></th:block>
+    </nav>
+</header>
+<main>
+
+    <div class="container bg-gray p-3 rounded  text-center mt-5 justify-content-center">
+        <h1>Add new Party</h1>
+        <h4 class="text-center bg-success text-warning">Party with that name already exists!</h4>
+        <form th:action="@{/add-party}" method="post" th:object="${party}">
+            <hr class="my-3"/>
+            <input placeholder="Party name" type="text" class="form-control" th:field="*{name}">
+            <hr class="my-3"/>
+
+            <button name="submit" type="submit" class="btn btn-success">Add Party</button>
+        </form>
+
+    </div>
+    <br>
+    <div class="container bg-gray p-3 rounded  text-center mt-5 justify-content-center">
+        <ul class="list-group w-50 mx-auto">
+            <th:block th:each="party : ${partyList}">
+                <li class="list-group-item">
+                    <div class="d-inline p-2">
+                        <span th:text="${party.name}"></span>
+                        <div class="d-inline p-2 offset-2">
+                            <button type="button" class="btn btn-danger">Delete</button>
+                        </div>
+                    </div>
+                </li>
+            </th:block>
+        </ul>
+    </div>
+</main>
+<footer class="footer bg-success py-2">
+    <th:block th:include="~{/fragments/footer.html}"></th:block>
+</footer>
+</body>
+</html>

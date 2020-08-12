@@ -1,0 +1,20 @@
+<th:block xmlns:th="" xmlns:sec="http://www.w3.org/1999/xhtml">
+    <div class="container bg-gray p-3 rounded  text-center mt-5 justify-content-left" sec:authorize="hasRole('ADMIN')">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Votes</th>
+            </tr>
+            </thead>
+            <tbody>
+            <th:block th:each="partyStat : ${partyStatistics}">
+                <tr>
+                    <td th:text="${partyStat.name}"></td>
+                    <td th:text="${partyStat.voteCount}"></td>
+                </tr>
+            </th:block>
+            </tbody>
+        </table>
+    </div>
+</th:block>
